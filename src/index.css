@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+
+  :root {
+    --color-primary: 235 87 87;
+    --color-primary-variant: 255 118 118;
+    --color-secondary: 102 35 35;
+    --color-softgray: 189 189 189;
+    --color-gray: 130 130 130;
+    --color-white: 255 255 255;
+  }
+
+  html {
+    font-family: Quicksand;
+  }
+
+  h2, h3 {
+    @apply font-bold;
+  }
+  h2 {
+    @apply text-[22px];
+  }
+  h3 {
+    @apply text-base;
+  }
+  h4 {
+    @apply text-sm;
+  }
+
+  p {
+    @apply font-normal text-xs leading-5;
+  }
+}
+
+@layer components {
+  button.primary, input[type=button].primary, input[type=submit].primary, input[type=reset].primary, [role=button].primary {
+    @apply bg-primary rounded-full px-6 py-1 text-white md:min-w-[117px] text-sm h-[31px];
+  }
+  button.outlinec {
+    @apply bg-transparent rounded-full px-6 text-primary outline-1 md:min-w-[117px] text-sm outline h-[29px];
+  }
+  
+  button.icon {
+    @apply bg-transparent text-primary  h-[31px]  w-[31px] flex items-center justify-center;
+  }
+  input[type=range] {
+    @apply outline-none h-9 bg-transparent appearance-none;
+  }
+  
+  input[type=range]::-webkit-slider-runnable-track {
+    @apply rounded-full bg-white cursor-pointer h-[6px];
+  }
+
+  input[type=range]::-webkit-slider-thumb {
+    @apply h-5 w-5 mt-[-6px] appearance-none bg-white cursor-pointer rounded-full border-softgray;
+  }
+  input[type="search"]::-webkit-search-cancel-button {
+    display: none;
+  }
+}
