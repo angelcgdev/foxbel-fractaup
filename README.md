@@ -13,7 +13,7 @@ Your need a previous environment configured using Node.js
 * npm
 ## Installation
 
-Install Forbex using npm
+Install Forbel using npm
 
 1. download the file .zip
 2. install dependencies using npm
