@@ -13,10 +13,10 @@ export const CardAlbum = ({ artist, album }: CardAlbumProps) => {
   return (
     <article aria-label="Artist card" className='flex flex-col lg:flex-row items-stretch relative'>
         <figure className='bg-gray w-full h-full absolute -z-10 lg:z-0 lg:static lg:w-[250px] lg:aspect-square'>
-            <img src={album.coverMedium} alt="Photo of recommended artist" className="h-full w-full object-cover"/>
+            <img src={album.coverMedium} alt="Photo of recommended album" className="h-full w-full object-cover"/>
         </figure>
         <div className='flex-1 overflow-hidden p-8 flex flex-col gap-3 md:gap-5 text-white bg-center bg-no-repeat bg-cover bg-primary-variant bg-opacity-70 relative'>
-            <img src={artist.pictureXl} className="w-full h-full top-0 left-0 right-0 bottom-0 object-cover absolute -z-10"/>
+            <img src={artist.pictureXl} className="w-full h-full top-0 left-0 right-0 bottom-0 object-cover absolute -z-10" alt="Photo of recommended artist"/>
             <div className="w-full flex flex-col">
               <h2>{artist.name} {album.title}</h2>
               <div className="flex flex-wrap gap-x-4 w-full">
@@ -28,7 +28,7 @@ export const CardAlbum = ({ artist, album }: CardAlbumProps) => {
             <div className="flex gap-5">
               <button className="primary line-clamp-1">Reproducir</button>
               <button className="outlinec line-clamp-1">Seguir</button>
-              <button className="icon">
+              <button className="icon" aria-label="Menu">
                 <FontAwesomeIcon icon={faEllipsisH}/>
               </button>
             </div>

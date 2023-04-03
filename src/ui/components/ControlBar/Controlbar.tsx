@@ -1,9 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faPause, faPlay, faStepBackward, faStepForward } from '@fortawesome/free-solid-svg-icons'
 import { VolumeController } from "./components/VolumeController"
-import { useContext, useEffect, useRef, useState } from "react"
-import { FoxbelContext, TrackActionType } from "../../provider/FoxbelProvider"
-import { TrackMdl } from "../../../domain/model/track.mdl"
 import useControllerBarViewModel from "./ViewModel"
 
 export const Controlbar = () => {
@@ -26,13 +23,13 @@ export const Controlbar = () => {
               </div>
           </div>
           <div className="p-3 md:p-5 h-full flex items-center justify-end md:justify-center gap-6 md:flex-1">
-            <button onClick={prevTrack}>
+            <button onClick={prevTrack} aria-label="Previous track">
               <FontAwesomeIcon icon={faStepBackward} className="hidden sm:inline text-sm md:text-base lg:text-lg"/>
             </button>
-            <button className="h-full aspect-square bg-white bg-opacity-10 rounded-full" onClick={handlePlay}>
+            <button className="h-full aspect-square bg-white bg-opacity-10 rounded-full" onClick={handlePlay}  aria-label={play ? "Pause" : "Play"}>
               <FontAwesomeIcon icon={play?faPause:faPlay} />
             </button>
-            <button onClick={nextTrack}>
+            <button onClick={nextTrack} aria-label="Next track">
               <FontAwesomeIcon icon={faStepForward}  className={`inline text-sm md:text-base lg:text-lg ${!trackSelected?'text-softgray':''}`} aria-hidden={"false"} />
             </button>
           </div>

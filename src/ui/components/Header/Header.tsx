@@ -28,12 +28,12 @@ export const Header = () => {
         </div>
         <div className="flex gap-3">
           <div className="flex items-center gap-3">
-            <button className="h-9 w-9">
+            <button className="h-9 w-9"  aria-label="User avatar">
               <FontAwesomeIcon icon={faUser} className="text-xs md:text-base lg:text-lg text-primary"/>
             </button>
               <span className="hidden sm:inline text-base whitespace-nowrap">Francisco M.</span>
           </div>
-          <button role="menu" className="md:hidden h-9 w-9 outline-black outline-1 outline" onClick={handleMenu}>
+          <button role="menu" className="md:hidden h-9 w-9 outline-black outline-1 outline" onClick={handleMenu} aria-label="Menu">
               <FontAwesomeIcon icon={faBars} className="text-xs md:text-base lg:text-lg text-black"/>
           </button>
         </div>

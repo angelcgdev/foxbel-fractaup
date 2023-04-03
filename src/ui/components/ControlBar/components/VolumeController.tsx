@@ -39,6 +39,10 @@ export const VolumeController = ({ onChangeVolume }: VolumeControllerProps) => {
         value={volume}
         min={minValue}
         max={maxValue}
+        aria-label="Volume Control"
+        aria-valuemin={minValue}
+        aria-valuemax={maxValue}
+        aria-aria-valuenow={volume}
       />
       <div className='h-7 md:h-9 aspect-square flex items-center'>
         <FontAwesomeIcon icon={icon()} className="h-full"/>
