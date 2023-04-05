@@ -1,11 +1,11 @@
 import { faEllipsisV, faPlay } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { TrackMdl } from '../../domain/model/track.mdl';
+import { type TrackMdl } from '../../domain/model/track.mdl';
 import { useContext } from 'react';
 import { FoxbelContext, TrackActionType } from '../provider/FoxbelProvider';
 
 interface CardTrackProps {
-  track: TrackMdl;
+  track: TrackMdl
 }
 export const CardTrack = ({ track }: CardTrackProps) => {
   const { artist, title, album } = track;
