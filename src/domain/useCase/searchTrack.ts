@@ -1,6 +1,5 @@
-import { searchTrack } from "../../data/reapository/trackReapository";
-import { TrackMdl } from "../model/track.mdl";
+import { searchTrack } from '../../data/reapository/trackReapository';
 
 export async function searchTrackUseCase(query: string) {
-    return await searchTrack(query);
+  return await searchTrack(query);
 }

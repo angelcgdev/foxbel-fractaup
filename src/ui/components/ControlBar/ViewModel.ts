@@ -1,67 +1,73 @@
-import { useContext, useEffect, useRef, useState } from "react";
-import { FoxbelContext, TrackActionType } from "../../provider/FoxbelProvider";
-import { TrackMdl } from "../../../domain/model/track.mdl";
+import { useContext, useEffect, useRef, useState } from 'react';
+import { FoxbelContext, TrackActionType } from '../../provider/FoxbelProvider';
+import { type TrackMdl } from '../../../domain/model/track.mdl';
 
-export default function ControllerBarViewModel () {
-    
+export default function ControllerBarViewModel() {
   const player = useRef<HTMLAudioElement>(null);
   const [play, setPlay] = useState(false);
-  const { state: { trackSelected, tracks }, dispatch } = useContext(FoxbelContext);
-  const onChangeVolume = (volume: number) =>{
-    if(player.current){
+  const {
+    state: { trackSelected, tracks },
+    dispatch
+  } = useContext(FoxbelContext);
+  const onChangeVolume = (volume: number) => {
+    if (player.current != null) {
       player.current.volume = volume;
     }
-  }
-  const loadMusic = async()=>{
-    player.current!.currentTime = 0;
-    setPlay(!player.current?.paused)
-    await player.current?.play();
-    console.log(player.current?.paused)
-    setPlay(!player.current?.paused)
-  }
-  const handlePlay = async()=> {
-    if(player.current?.paused){
+  };
+  const loadMusic = async () => {
+    if (player.current === null) return
+    player.current.currentTime = 0;
+    setPlay(!player.current.paused);
+    await player.current.play();
+    console.log(player.current.paused);
+    setPlay(!player.current.paused);
+  };
+  const handlePlay = async () => {
+    if (player.current === null) return
+    if (player.current.paused) {
       await player.current?.play();
-    }else{
-      await player.current?.pause();
+    } else {
+      player.current?.pause();
     }
-    setPlay(!player.current?.paused);
-  }
-  const nextTrack = ()=> {
-    if(!trackSelected)return false;
-    const trackSelectedIndex = tracks.findIndex(track =>track.id === trackSelected?.id)+1;
-    const newTrack = tracks[trackSelectedIndex];
-    if(newTrack){
+    setPlay(!((player.current?.paused) ?? false));
+  };
+  const nextTrack = () => {
+    if (trackSelected == null) return false;
+    const trackSelectedIndex =
+      tracks.findIndex((track) => track.id === trackSelected?.id) + 1;
+    const newTrack: TrackMdl | null = tracks[trackSelectedIndex];
+    if (newTrack != null) {
       setPlay(false);
-      loadTrack(tracks[trackSelectedIndex])
+      loadTrack(tracks[trackSelectedIndex]);
       return true;
     }
     return false;
-  }
-  const prevTrack = ()=> {
-    if(!trackSelected)return
-    const trackSelectedIndex = tracks.findIndex(track =>track.id === trackSelected?.id)-1;
-    const newTrack = tracks[trackSelectedIndex];
-    if(newTrack){
+  };
+  const prevTrack = () => {
+    if (trackSelected == null) return;
+    const trackSelectedIndex =
+      tracks.findIndex((track) => track.id === trackSelected?.id) - 1;
+    const newTrack: TrackMdl | null = tracks[trackSelectedIndex];
+    if (newTrack != null) {
       setPlay(false);
-      loadTrack(tracks[trackSelectedIndex])
+      loadTrack(tracks[trackSelectedIndex]);
     }
-  }
-  const handleEnd = ()=> {
+  };
+  const handleEnd = () => {
     setPlay(false);
     const passed = nextTrack();
-    if(!passed && tracks.length>0){
+    if (!passed && tracks.length > 0) {
       loadTrack(tracks[0]);
     }
-  }
-  const loadTrack = (track: TrackMdl)=> {
-    dispatch({type: TrackActionType.PUSHTRACK, payload: track});
-  }
+  };
+  const loadTrack = (track: TrackMdl) => {
+    dispatch({ type: TrackActionType.PUSHTRACK, payload: track });
+  };
   useEffect(() => {
-    if(trackSelected){
-      loadMusic();
+    if (trackSelected != null) {
+      void loadMusic();
     }
-  }, [trackSelected])
+  }, [trackSelected]);
 
   return {
     trackSelected,
@@ -71,6 +77,6 @@ export default function ControllerBarViewModel () {
     play,
     onChangeVolume,
     handleEnd,
-    handlePlay,
-  }
+    handlePlay
+  };
 }

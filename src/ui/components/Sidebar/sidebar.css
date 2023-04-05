@@ -1,12 +1,12 @@
 .comoom {
-    @apply bg-secondary flex flex-col h-full;
+  @apply bg-secondary flex flex-col h-full;
 }
 .sidebarMobile {
-    @apply w-full comoom fixed z-50 duration-300 translate-x-[-100%] bottom-0;
+  @apply w-full comoom fixed z-50 duration-300 translate-x-[-100%] bottom-0;
 }
 .sidebarMobile.open {
-    @apply translate-x-0;
+  @apply translate-x-0;
 }
 .sidebar {
-    @apply w-[330px] comoom;
+  @apply w-[330px] comoom;
 }

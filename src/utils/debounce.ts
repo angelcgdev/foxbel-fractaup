@@ -1,10 +1,10 @@
-export function debounce(fn: Function, delay: number){
-    let timer: number;
+export function debounce<T>(fn: (props: T) => void, delay: number) {
+  let timer: NodeJS.Timeout;
 
-    return function<T>(props: T){
-        clearTimeout(timer)
-        timer = setTimeout(()=>{
-            fn(props);
-        }, delay);
-    }
+  return function (props: T) {
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      fn(props);
+    }, delay);
+  };
 }
