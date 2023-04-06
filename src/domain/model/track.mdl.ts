@@ -1,33 +1,42 @@
-import { AlbumConverter, type AlbumMdl } from './album,.mdl';
-import { ArtistConverter, type ArtistMdl } from './artist.mdl';
-import { ContributorConverter, type ContributorMdl } from './contributor.mdl';
+import {
+  AlbumConverter,
+  type AlbumMdl
+} from './album,.mdl';
+import {
+  ArtistConverter,
+  type ArtistMdl
+} from './artist.mdl';
+import {
+  ContributorConverter,
+  type ContributorMdl
+} from './contributor.mdl';
 
 export interface TrackMdl {
-  id: string
-  readable: boolean
-  title: string
-  titleShort: string
-  titleVersion: string
-  isrc: string
-  link: string
-  share: string
-  duration: string
-  trackPosition: number
-  diskNumber: number
-  rank: string
-  releaseDate: Date
-  explicitLyrics: boolean
-  explicitContentLyrics: number
-  explicitContentCover: number
-  preview: string
-  bpm: number
-  gain: number
-  availableCountries: string[]
-  contributors?: ContributorMdl[]
-  md5Image: string
-  artist: ArtistMdl
-  album: AlbumMdl
-  type: string
+  id: string;
+  readable: boolean;
+  title: string;
+  titleShort: string;
+  titleVersion: string;
+  isrc?: string;
+  link: string;
+  share?: string;
+  duration: string;
+  trackPosition?: number;
+  diskNumber?: number;
+  rank: string;
+  releaseDate?: Date;
+  explicitLyrics: boolean;
+  explicitContentLyrics: number;
+  explicitContentCover: number;
+  preview: string;
+  bpm?: number;
+  gain?: number;
+  availableCountries?: string[];
+  contributors?: ContributorMdl[];
+  md5Image: string;
+  artist: ArtistMdl;
+  album: AlbumMdl;
+  type: string;
 }
 
 export class TrackConverter {
@@ -36,7 +45,9 @@ export class TrackConverter {
     return this.fromObj(jsonParsed);
   }
 
-  public static fromObj(obj: Record<string, any>): TrackMdl {
+  public static fromObj(
+    obj: Record<string, any>
+  ): TrackMdl {
     return {
       id: obj.id,
       readable: obj.readable,
@@ -59,7 +70,7 @@ export class TrackConverter {
       gain: obj.gain,
       availableCountries: obj.available_countries,
       contributors:
-        (obj.contributors != null)
+        obj.contributors != null
           ? [...obj.contributors].map((json) =>
               ContributorConverter.fromObj(json)
             )

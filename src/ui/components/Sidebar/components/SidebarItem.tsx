@@ -1,11 +1,15 @@
-import { ReactNode } from 'react';
+import { type ReactNode } from 'react';
 
 interface SidebarItemProps {
   href: string;
   children: ReactNode;
   active: boolean;
 }
-export const SidebarItem = ({ href, children, active }: SidebarItemProps) => {
+export const SidebarItem = ({
+  href,
+  children,
+  active
+}: SidebarItemProps) => {
   return (
     <a
       href={href}
@@ -13,11 +17,13 @@ export const SidebarItem = ({ href, children, active }: SidebarItemProps) => {
         active ? 'text-primary font-bold' : ''
       }`}
     >
-      {active ? (
+      {active
+        ? (
         <div className='absolute left-0 w-[5px] h-5 bg-primary' />
-      ) : (
+          )
+        : (
         <></>
-      )}
+          )}
       {children}
     </a>
   );

@@ -1,17 +1,17 @@
 export interface ArtistMdl {
-  id: string
-  name: string
-  link: string
-  share: string
-  picture: string
-  pictureSmall: string
-  pictureMedium: string
-  pictureBig: string
-  pictureXl: string
-  radio: boolean
-  nbFan: number
-  tracklist: string
-  type: string
+  id: string;
+  name: string;
+  link: string;
+  share?: string;
+  picture: string;
+  pictureSmall: string;
+  pictureMedium: string;
+  pictureBig: string;
+  pictureXl: string;
+  radio?: boolean;
+  nbFan?: number;
+  tracklist: string;
+  type: string;
 }
 
 export class ArtistConverter {
@@ -20,7 +20,9 @@ export class ArtistConverter {
     return this.fromObj(jsonParsed);
   }
 
-  public static fromObj(obj: Record<string, any>): ArtistMdl {
+  public static fromObj(
+    obj: Record<string, any>
+  ): ArtistMdl {
     return {
       id: obj.id,
       name: obj.name,

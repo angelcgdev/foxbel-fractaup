@@ -1,23 +1,34 @@
 import useRecentsListViewModel from './ViewModel';
 import { CardAlbum } from '../../components/CardAlbum';
 import { CardTrack } from '../../components/CardTrack';
-import { TrackMdl } from '../../../domain/model/track.mdl';
+import { type TrackMdl } from '../../../domain/model/track.mdl';
 
-const List = ({ tracks, query }: { tracks: TrackMdl[]; query: string }) => {
+const List = ({
+  tracks,
+  query
+}: {
+  tracks: TrackMdl[];
+  query: string;
+}) => {
   if (tracks.length === 0) {
     return (
       <section
         aria-label='Seach Result'
         className='flex-1 flex justify-center items-center'
       >
-        <p className='text-base'>no se encontraron resultados para {query}</p>
+        <p className='text-base'>
+          no se encontraron resultados para {query}
+        </p>
       </section>
     );
   }
   return (
     <>
       <section aria-label='Recommended Artist'>
-        <CardAlbum album={tracks[0].album} artist={tracks[0].artist} />
+        <CardAlbum
+          album={tracks[0].album}
+          artist={tracks[0].artist}
+        />
       </section>
       <section
         aria-label='Song Results'
@@ -40,8 +51,9 @@ const List = ({ tracks, query }: { tracks: TrackMdl[]; query: string }) => {
   );
 };
 const LoadSection = () => {
-  const { traks, error, loading, query } = useRecentsListViewModel();
-  if (loading)
+  const { traks, error, loading, query } =
+    useRecentsListViewModel();
+  if (loading) {
     return (
       <section
         aria-label='Seach Error'
@@ -50,7 +62,8 @@ const LoadSection = () => {
         <p className='text-base'>Cargando...</p>
       </section>
     );
-  if (error)
+  }
+  if (error) {
     return (
       <section
         aria-label='Seach Error'
@@ -59,6 +72,7 @@ const LoadSection = () => {
         <p className='text-base'>{error}</p>
       </section>
     );
+  }
   return <List tracks={traks} query={query} />;
 };
 

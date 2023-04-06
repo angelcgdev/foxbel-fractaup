@@ -1,5 +1,13 @@
-import { useCallback, useContext, useLayoutEffect, useState } from 'react';
-import { FoxbelContext, MenuActionType } from '../../provider/FoxbelProvider';
+import {
+  useCallback,
+  useContext,
+  useLayoutEffect,
+  useState
+} from 'react';
+import {
+  FoxbelContext,
+  MenuActionType
+} from '../../provider/FoxbelProvider';
 
 interface Path {
   href: string;
@@ -19,8 +27,8 @@ const sectionMenu: SectionMenu[] = [
       { href: '#artistas', name: 'Artistas' },
       { href: '#albums', name: 'Álbums' },
       { href: '#canciones', name: 'Canciones' },
-      { href: '#estaciones', name: 'Estaciones' },
-    ],
+      { href: '#estaciones', name: 'Estaciones' }
+    ]
   },
   {
     title: 'Playlist',
@@ -28,20 +36,25 @@ const sectionMenu: SectionMenu[] = [
       { href: '#metal', name: 'Metal' },
       { href: '#para_bailar', name: 'Para bailar' },
       { href: '#rock90s', name: 'Rock 90s' },
-      { href: '#baladas', name: 'Baladas' },
-    ],
-  },
+      { href: '#baladas', name: 'Baladas' }
+    ]
+  }
 ];
 export default function SideBarViewModel() {
   const md = 768;
   const {
     state: { menu },
-    dispatch,
+    dispatch
   } = useContext(FoxbelContext);
-  const [isMobile, setIsMobile] = useState(md - 1 > window.innerWidth);
+  const [isMobile, setIsMobile] = useState(
+    md - 1 > window.innerWidth
+  );
   const pathSelected = '#recientes';
   const handleMenu = () => {
-    dispatch({ type: MenuActionType.HANDLEMENU, payload: !menu });
+    dispatch({
+      type: MenuActionType.HANDLEMENU,
+      payload: !menu
+    });
   };
   const handleResize = useCallback((e: Event) => {
     const { innerWidth } = e.target as Window;
@@ -49,7 +62,7 @@ export default function SideBarViewModel() {
       if (menu) {
         handleMenu();
       }
-      return setIsMobile(false);
+      setIsMobile(false); return;
     }
     setIsMobile(true);
   }, []);
@@ -67,6 +80,6 @@ export default function SideBarViewModel() {
     isMobile,
     handleMenu,
     pathSelected,
-    isMenuOpen: menu,
+    isMenuOpen: menu
   };
 }

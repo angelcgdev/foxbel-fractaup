@@ -1,14 +1,13 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faPause,
-  faPlay,
-  faStepBackward,
-  faStepForward
-} from '@fortawesome/free-solid-svg-icons';
 import { VolumeController } from './components/VolumeController';
 import useControllerBarViewModel from './ViewModel';
-
-export const Controlbar = () => {
+import '../../../index.css';
+import { Icon } from '../Icon/Icon';
+interface ControllBarProps {
+  className?: string;
+}
+export const ControllBar = ({
+  className
+}: ControllBarProps) => {
   const {
     trackSelected,
     player,
@@ -20,9 +19,12 @@ export const Controlbar = () => {
     handlePlay
   } = useControllerBarViewModel();
   return (
-    <footer className='w-full h-16 sm:h-20 md:h-24 lg:h-[100px] bg-primary sticky bottom-0 z-10 text-white flex justify-between items-center pr-6 sm:pr-9 md:pr-12'>
-      {(trackSelected != null)
-        ? (
+    <footer
+      className={`w-full h-16 sm:h-20 md:h-24 lg:h-[100px] bg-primary text-white flex justify-between items-center pr-6 sm:pr-9 md:pr-12 ${
+        className ?? ''
+      }`}
+    >
+      {trackSelected != null ? (
         <audio
           ref={player}
           src={trackSelected.preview}
@@ -32,14 +34,13 @@ export const Controlbar = () => {
           onEnded={handleEnd}
           className='hidden'
         />
-          )
-        : (
+      ) : (
         <></>
-          )}
-      <div className='w-full h-16 sm:h-20 md:h-24 lg:h-[100px] flex gap-5 flex-1'>
+      )}
+      <div className='w-full h-16 sm:h-20 md:h-24 lg:h-[100px] flex gap-2 md:gap-5 flex-1'>
         <figure
           className={`h-full bg-gray aspect-square ${
-            (trackSelected != null) ? '' : 'hidden'
+            trackSelected != null ? '' : 'hidden'
           }`}
         >
           <img
@@ -49,32 +50,44 @@ export const Controlbar = () => {
           />
         </figure>
         <div className='flex flex-col justify-center gap-0 sm:gap-1 lg:gap-2'>
-          <h3 className='song-title'>{trackSelected?.title}</h3>
-          <p className='song-artist'>{trackSelected?.artist.name}</p>
+          <h3 className='song-title text-ellipsis w-full'>
+            {trackSelected?.title}
+          </h3>
+          <p className='song-artist'>
+            {trackSelected?.artist.name}
+          </p>
         </div>
       </div>
       <div className='p-3 md:p-5 h-full flex items-center justify-end md:justify-center gap-6 md:flex-1'>
-        <button onClick={prevTrack} aria-label='Previous track'>
-          <FontAwesomeIcon
-            icon={faStepBackward}
-            className='hidden sm:inline text-sm md:text-base lg:text-lg'
-          />
+        <button
+          onClick={prevTrack}
+          aria-label='Previous track'
+          className='text-white disabled:text-opacity-50'
+          disabled={trackSelected === undefined}
+        >
+          <Icon icon='prev' />
         </button>
         <button
-          className='h-full aspect-square bg-white bg-opacity-10 rounded-full'
-          onClick={() => { void handlePlay() }}
+          className='h-full aspect-square bg-white bg-opacity-10 rounded-full text-white disabled:text-opacity-50'
+          disabled={trackSelected === undefined}
+          onClick={() => {
+            void handlePlay();
+          }}
           aria-label={play ? 'Pause' : 'Play'}
         >
-          <FontAwesomeIcon icon={play ? faPause : faPlay} />
+          {play ? (
+            <Icon icon='pause' />
+          ) : (
+            <Icon icon='play' />
+          )}
         </button>
-        <button onClick={nextTrack} aria-label='Next track'>
-          <FontAwesomeIcon
-            icon={faStepForward}
-            className={`inline text-sm md:text-base lg:text-lg ${
-              (trackSelected == null) ? 'text-softgray' : ''
-            }`}
-            aria-hidden={'false'}
-          />
+        <button
+          onClick={nextTrack}
+          aria-label='Next track'
+          className='text-white disabled:text-opacity-50'
+          disabled={trackSelected === undefined}
+        >
+          <Icon icon='next' />
         </button>
       </div>
       <VolumeController onChangeVolume={onChangeVolume} />

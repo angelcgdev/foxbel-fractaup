@@ -1,5 +1,13 @@
-import { useContext, useEffect, useRef, useState } from 'react';
-import { FoxbelContext, TrackActionType } from '../../provider/FoxbelProvider';
+import {
+  useContext,
+  useEffect,
+  useRef,
+  useState
+} from 'react';
+import {
+  FoxbelContext,
+  TrackActionType
+} from '../../provider/FoxbelProvider';
 import { type TrackMdl } from '../../../domain/model/track.mdl';
 
 export default function ControllerBarViewModel() {
@@ -15,7 +23,7 @@ export default function ControllerBarViewModel() {
     }
   };
   const loadMusic = async () => {
-    if (player.current === null) return
+    if (player.current === null) return;
     player.current.currentTime = 0;
     setPlay(!player.current.paused);
     await player.current.play();
@@ -23,19 +31,22 @@ export default function ControllerBarViewModel() {
     setPlay(!player.current.paused);
   };
   const handlePlay = async () => {
-    if (player.current === null) return
+    if (player.current === null) return;
     if (player.current.paused) {
       await player.current?.play();
     } else {
       player.current?.pause();
     }
-    setPlay(!((player.current?.paused) ?? false));
+    setPlay(!(player.current?.paused ?? false));
   };
   const nextTrack = () => {
     if (trackSelected == null) return false;
     const trackSelectedIndex =
-      tracks.findIndex((track) => track.id === trackSelected?.id) + 1;
-    const newTrack: TrackMdl | null = tracks[trackSelectedIndex];
+      tracks.findIndex(
+        (track) => track.id === trackSelected?.id
+      ) + 1;
+    const newTrack: TrackMdl | null =
+      tracks[trackSelectedIndex];
     if (newTrack != null) {
       setPlay(false);
       loadTrack(tracks[trackSelectedIndex]);
@@ -46,8 +57,11 @@ export default function ControllerBarViewModel() {
   const prevTrack = () => {
     if (trackSelected == null) return;
     const trackSelectedIndex =
-      tracks.findIndex((track) => track.id === trackSelected?.id) - 1;
-    const newTrack: TrackMdl | null = tracks[trackSelectedIndex];
+      tracks.findIndex(
+        (track) => track.id === trackSelected?.id
+      ) - 1;
+    const newTrack: TrackMdl | null =
+      tracks[trackSelectedIndex];
     if (newTrack != null) {
       setPlay(false);
       loadTrack(tracks[trackSelectedIndex]);
@@ -61,7 +75,10 @@ export default function ControllerBarViewModel() {
     }
   };
   const loadTrack = (track: TrackMdl) => {
-    dispatch({ type: TrackActionType.PUSHTRACK, payload: track });
+    dispatch({
+      type: TrackActionType.PUSHTRACK,
+      payload: track
+    });
   };
   useEffect(() => {
     if (trackSelected != null) {

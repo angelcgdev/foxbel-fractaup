@@ -1,17 +1,17 @@
 export interface ContributorMdl {
-  id: number
-  name: string
-  link: string
-  share: string
-  picture: string
-  pictureSmall: string
-  pictureMedium: string
-  pictureBig: string
-  pictureXl: string
-  radio: boolean
-  tracklist: string
-  type: string
-  role: string
+  id: number;
+  name: string;
+  link: string;
+  share: string;
+  picture: string;
+  pictureSmall: string;
+  pictureMedium: string;
+  pictureBig: string;
+  pictureXl: string;
+  radio: boolean;
+  tracklist: string;
+  type: string;
+  role: string;
 }
 export class ContributorConverter {
   public static fromJson(json: string): ContributorMdl {
@@ -33,7 +33,9 @@ export class ContributorConverter {
     };
   }
 
-  public static fromObj(obj: Record<string, any>): ContributorMdl {
+  public static fromObj(
+    obj: Record<string, any>
+  ): ContributorMdl {
     return {
       id: obj.id,
       name: obj.name,

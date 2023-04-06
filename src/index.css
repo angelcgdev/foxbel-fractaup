@@ -43,15 +43,19 @@
   input[type='submit'].primary,
   input[type='reset'].primary,
   [role='button'].primary {
-    @apply bg-primary rounded-full px-6 py-1 text-white md:min-w-[117px] text-sm h-[31px];
+    @apply bg-primary rounded-full px-6 py-1 text-white md:min-w-[117px] text-sm h-[31px] disabled:bg-opacity-75;
   }
-  button.outlinec {
-    @apply bg-transparent rounded-full px-6 text-primary outline-1 md:min-w-[117px] text-sm outline h-[29px];
+  button.secondary {
+    @apply bg-transparent rounded-full px-6 text-primary outline-1 md:min-w-[117px] text-sm outline h-[29px] disabled:text-opacity-75;
   }
 
   button.icon {
-    @apply bg-transparent text-primary  h-[31px]  w-[31px] flex items-center justify-center;
+    @apply bg-transparent text-primary  disabled:text-opacity-75 h-[31px]  w-[31px] flex items-center justify-center;
   }
+  button.icon_vertical {
+    @apply w-9 p-2 rotate-90 disabled:text-opacity-75;
+  }
+
   input[type='range'] {
     @apply outline-none h-9 bg-transparent appearance-none;
   }

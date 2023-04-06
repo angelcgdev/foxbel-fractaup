@@ -1,7 +1,7 @@
 import { Sidebar } from '../components/Sidebar/Sidebar';
 import { Header } from '../components/Header/Header';
 import { FoxbelProvider } from '../provider/FoxbelProvider';
-import { Controlbar } from '../components/ControlBar/Controlbar';
+import { ControllBar } from '../components/ControlBar/Controlbar';
 import { RecentsPage } from './RecentsPage/RecentsPage';
 
 export function HomePage() {
@@ -15,7 +15,7 @@ export function HomePage() {
             <RecentsPage />
           </div>
         </div>
-        <Controlbar />
+        <ControllBar className='sticky bottom-0 z-10' />
       </div>
     </FoxbelProvider>
   );

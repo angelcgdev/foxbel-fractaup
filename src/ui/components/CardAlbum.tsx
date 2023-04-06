@@ -1,18 +1,23 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { AlbumMdl } from '../../domain/model/album,.mdl';
-import { ArtistMdl } from '../../domain/model/artist.mdl';
-import { faEllipsisH } from '@fortawesome/free-solid-svg-icons';
+import type { AlbumMdl } from '../../domain/model/album,.mdl';
+import type { ArtistMdl } from '../../domain/model/artist.mdl';
+import { Button } from './Button/Button';
 
 interface CardAlbumProps {
   album: AlbumMdl;
   artist: ArtistMdl;
 }
 
-export const CardAlbum = ({ artist, album }: CardAlbumProps) => {
+export const CardAlbum = ({
+  artist,
+  album
+}: CardAlbumProps) => {
   const getRandom = (min: number, max: number) =>
-    (Math.random() * (max - min) + min).toLocaleString('pe', {
-      maximumFractionDigits: 2,
-    });
+    (Math.random() * (max - min) + min).toLocaleString(
+      'pe',
+      {
+        maximumFractionDigits: 2
+      }
+    );
   return (
     <article
       aria-label='Artist card'
@@ -43,16 +48,19 @@ export const CardAlbum = ({ artist, album }: CardAlbumProps) => {
           </div>
         </div>
         <p className='h-full w-full line-clamp-3'>
-          Adele Laurie Blue Adkins (Tottenham, Londres, Inglaterra, 5 de mayo de
-          1988), conocida simplemente como Adele, es una cantante, compositora y
-          multinstrumentista británica.8​
+          Adele Laurie Blue Adkins (Tottenham, Londres,
+          Inglaterra, 5 de mayo de 1988), conocida
+          simplemente como Adele, es una cantante,
+          compositora y multinstrumentista británica.8
         </p>
         <div className='flex gap-5'>
-          <button className='primary line-clamp-1'>Reproducir</button>
-          <button className='outlinec line-clamp-1'>Seguir</button>
-          <button className='icon' aria-label='Menu'>
-            <FontAwesomeIcon icon={faEllipsisH} />
-          </button>
+          <Button type='primary' className='line-clamp-1'>
+            Reproducir
+          </Button>
+          <Button type='seconday' className='line-clamp-1'>
+            Seguir
+          </Button>
+          <Button type='ellipsis' />
         </div>
       </div>
     </article>

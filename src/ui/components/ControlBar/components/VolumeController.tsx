@@ -7,17 +7,24 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { type ChangeEvent, useState } from 'react';
 
 interface VolumeControllerProps {
-  onChangeVolume: (vol: number) => void
+  onChangeVolume: (vol: number) => void;
 }
 
-export const VolumeController = ({ onChangeVolume }: VolumeControllerProps) => {
+export const VolumeController = ({
+  onChangeVolume
+}: VolumeControllerProps) => {
   const [volume, setVolume] = useState('.5');
   const minValue = 0;
   const maxValue = 1.0;
 
-  const handleVolume = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleVolume = (
+    e: ChangeEvent<HTMLInputElement>
+  ) => {
     const value = e.target.value;
-    const normalizedValue = Math.max(Math.min(+value, maxValue), minValue);
+    const normalizedValue = Math.max(
+      Math.min(+value, maxValue),
+      minValue
+    );
     onChangeVolume(normalizedValue);
     setVolume(normalizedValue.toString());
   };

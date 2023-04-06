@@ -1,17 +1,16 @@
-
 export interface AlbumMdl {
-  id: string
-  title: string
-  link: string
-  cover: string
-  coverSmall: string
-  coverMedium: string
-  coverBig: string
-  coverXl: string
-  md5Image: string
-  releaseDate: Date
-  tracklist: string
-  type: string
+  id: string;
+  title: string;
+  link?: string;
+  cover: string;
+  coverSmall: string;
+  coverMedium: string;
+  coverBig: string;
+  coverXl: string;
+  md5Image: string;
+  releaseDate?: Date;
+  tracklist: string;
+  type: string;
 }
 
 export class AlbumConverter {
@@ -20,7 +19,9 @@ export class AlbumConverter {
     return this.fromObj(jsonParsed);
   }
 
-  public static fromObj(obj: Record<string, any>): AlbumMdl {
+  public static fromObj(
+    obj: Record<string, any>
+  ): AlbumMdl {
     return {
       id: obj.id,
       title: obj.title,

@@ -2,15 +2,18 @@
 
 this is an technical test to Fractalup. deployed in [link](https://angelcgdev.github.io/foxbel-fractaup/)
 
-
 ## Dependencies
 
 - [tailwindcss](https://tailwindcss.com/docs/installation)
 - [postcss](https://tailwindcss.com/docs/installation)
 - [fontawesome 5](https://fontawesome.com/v5/docs/web/use-with/react)
+
 ## Prerequisites
+
 Your need a previous environment configured using Node.js
-* npm
+
+- npm
+
 ## Installation
 
 Install Forbel using npm
@@ -22,8 +25,8 @@ Install Forbel using npm
   npm install
 ```
 
-    
 ## Use
+
 This app can be executed in Testing, Development and Production environments.
 
 1. start tests (sorry, not enough time for this :c)
@@ -31,16 +34,20 @@ This app can be executed in Testing, Development and Production environments.
 ```bash
   npm run test
 ```
+
 2. run the app in a local server
 
 ```bash
   npm run dev
 ```
+
 3. run the app to compile to production a get a preview, you can find the prod files un "dist" folder
+
 ```bash
   npm run build
   npm run preview
 ```
+
 ## Autor
 
 - [@luiscaro](https://github.com/angelcgdev)

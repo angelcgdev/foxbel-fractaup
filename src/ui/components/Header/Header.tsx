@@ -1,23 +1,33 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser, faBars, faSearch } from '@fortawesome/free-solid-svg-icons';
+import {
+  faUser,
+  faBars,
+  faSearch
+} from '@fortawesome/free-solid-svg-icons';
 import {
   FoxbelContext,
   MenuActionType,
-  QueryActionType,
+  QueryActionType
 } from '../../provider/FoxbelProvider';
-import { ChangeEvent, useContext } from 'react';
+import { type ChangeEvent, useContext } from 'react';
 
 export const Header = () => {
   const {
     state: { menu },
-    dispatch,
+    dispatch
   } = useContext(FoxbelContext);
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
-    dispatch({ type: QueryActionType.CHANGEQUERY, payload: e.target.value });
+    dispatch({
+      type: QueryActionType.CHANGEQUERY,
+      payload: e.target.value
+    });
   };
   const handleMenu = () => {
-    dispatch({ type: MenuActionType.HANDLEMENU, payload: !menu });
+    dispatch({
+      type: MenuActionType.HANDLEMENU,
+      payload: !menu
+    });
   };
 
   return (
@@ -37,7 +47,10 @@ export const Header = () => {
       </div>
       <div className='flex gap-3'>
         <div className='flex items-center gap-3'>
-          <button className='h-9 w-9' aria-label='User avatar'>
+          <button
+            className='h-9 w-9'
+            aria-label='User avatar'
+          >
             <FontAwesomeIcon
               icon={faUser}
               className='text-xs md:text-base lg:text-lg text-primary'
