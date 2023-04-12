@@ -5,7 +5,7 @@ this is an technical test to Fractalup. deployed in [link](https://angelcgdev.gi
 ## Dependencies
 
 - [tailwindcss](https://tailwindcss.com/docs/installation)
-- [postcss](https://tailwindcss.com/docs/installation)
+- [postcss](https://postcss.org/)
 - [fontawesome 5](https://fontawesome.com/v5/docs/web/use-with/react)
 
 ## Prerequisites
@@ -16,7 +16,7 @@ Your need a previous environment configured using Node.js
 
 ## Installation
 
-Install Forbel using npm
+Install Foxbel using npm
 
 1. download the file .zip
 2. install dependencies using npm
