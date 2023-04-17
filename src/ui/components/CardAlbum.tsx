@@ -54,13 +54,19 @@ export const CardAlbum = ({
           compositora y multinstrumentista británica.8
         </p>
         <div className='flex gap-5'>
-          <Button type='primary' className='line-clamp-1'>
+          <Button
+            styleType='primary'
+            className='line-clamp-1'
+          >
             Reproducir
           </Button>
-          <Button type='seconday' className='line-clamp-1'>
+          <Button
+            styleType='seconday'
+            className='line-clamp-1'
+          >
             Seguir
           </Button>
-          <Button type='ellipsis' />
+          <Button styleType='ellipsis' />
         </div>
       </div>
     </article>

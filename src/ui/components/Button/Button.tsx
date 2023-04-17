@@ -4,7 +4,7 @@ import { type ButtonHTMLAttributes } from 'react';
 
 interface ButtonProps
   extends ButtonHTMLAttributes<HTMLButtonElement> {
-  type: 'primary' | 'seconday' | 'ellipsis';
+  styleType: 'primary' | 'seconday' | 'ellipsis';
   direction?: 'horizontal' | 'vertical';
   // children?: string | Record<string, any>;
   disabled?: boolean;
@@ -14,7 +14,7 @@ export const Button = ({
   children,
   className,
   direction = 'horizontal',
-  type,
+  styleType: type,
   ...rest
 }: ButtonProps) => {
   if (type === 'ellipsis') {

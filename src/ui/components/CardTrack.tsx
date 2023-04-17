@@ -34,7 +34,7 @@ export const CardTrack = ({ track }: CardTrackProps) => {
         </figure>
         <div className='aspect-square w-full absolute z-[1] top-0 flex justify-center items-center text-white'>
           <Button
-            type='ellipsis'
+            styleType='ellipsis'
             direction='vertical'
             className='absolute right-0 top-0'
           />

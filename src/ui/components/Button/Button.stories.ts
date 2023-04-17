@@ -16,25 +16,25 @@ type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
   args: {
-    type: 'primary',
+    styleType: 'primary',
     children: 'primary'
   }
 };
 
 export const Outline: Story = {
   args: {
-    type: 'seconday',
+    styleType: 'seconday',
     children: 'outline'
   }
 };
 export const MenuEllipties: Story = {
   args: {
-    type: 'ellipsis'
+    styleType: 'ellipsis'
   }
 };
 export const MenuElliptiesVertical: Story = {
   args: {
-    type: 'ellipsis',
+    styleType: 'ellipsis',
     direction: 'vertical',
     className: 'text-black'
   }
