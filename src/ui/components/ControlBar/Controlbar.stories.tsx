@@ -1,3 +1,4 @@
+/* @vite-ignore */
 import { type Meta, type StoryObj } from '@storybook/react';
 import { ControllBar } from './Controlbar';
 import { type TrackMdl } from '../../../domain/model/track.mdl';
@@ -63,7 +64,6 @@ const defaultTrack: TrackMdl = {
 };
 export const WithTrack: Story = {
   args: {
-    initPaused: true,
     trackSelected: defaultTrack
   }
 };

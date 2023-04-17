@@ -1,10 +1,11 @@
-import type { Meta, StoryObj } from '@storybook/react';
+/* @vite-ignore */
 import {
   within,
   userEvent
 } from '@storybook/testing-library';
 
 import { Page } from './Page';
+import type { StoryObj, Meta } from '@storybook/react';
 
 const meta = {
   title: 'Design System/Page',

@@ -1,6 +1,6 @@
+/* @vite-ignore */
 import './page.css';
 import { Header } from '../ui/components/Header/Header';
-
 export const Page: React.FC = () => {
   return (
     <article>
