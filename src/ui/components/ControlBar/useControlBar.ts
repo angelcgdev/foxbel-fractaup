@@ -5,7 +5,6 @@ interface useControllerProps {
   trackSelected?: TrackMdl;
   initialVolume: number;
 }
-let COUNTER = 0;
 export function useControllerBar({
   trackSelected,
   initialVolume
@@ -14,15 +13,11 @@ export function useControllerBar({
   const [paused, setPaused] = useState<boolean>(false);
   const prevTrack = useRef<TrackMdl>(null);
   const onChangeVolume = (volume: number) => {
-    COUNTER++;
     if (player.current != null) {
       player.current.volume = volume;
     }
   };
-  const handleInitVolume = () => {
-    if (player.current === null && COUNTER !== 0) return;
-    onChangeVolume(initialVolume);
-  };
+
   const loadMusic = async () => {
     if (player.current === null) return;
     player.current.currentTime = 0;
@@ -47,8 +42,8 @@ export function useControllerBar({
   }, [trackSelected]);
 
   useEffect(() => {
-    handleInitVolume();
-  }, [player.current]);
+    onChangeVolume(initialVolume);
+  }, []);
 
   return {
     trackSelected,

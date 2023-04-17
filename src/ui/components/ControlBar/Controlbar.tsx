@@ -6,7 +6,7 @@ import { useControllerBar } from './useControlBar';
 
 export interface ControllBarProps {
   className?: string;
-  trackSelected: TrackMdl;
+  trackSelected?: TrackMdl;
   onNext: () => void;
   onPrev: () => void;
   onPause?: () => void;
@@ -32,19 +32,15 @@ export const ControllBar = ({
         className ?? ''
       }`}
     >
-      {trackSelected != null ? (
-        <audio
-          ref={player}
-          src={trackSelected.preview}
-          controls
-          // eslint-disable-next-line react/no-unknown-property
-          playsInline={paused}
-          onEnded={onEnded}
-          className='hidden'
-        />
-      ) : (
-        <></>
-      )}
+      <audio
+        ref={player}
+        src={trackSelected?.preview}
+        controls
+        // eslint-disable-next-line react/no-unknown-property
+        playsInline={paused}
+        onEnded={onEnded}
+        className='hidden'
+      />
       <div className='w-full h-16 sm:h-20 md:h-24 lg:h-[100px] flex gap-2 md:gap-5 flex-1'>
         <figure
           className={`h-full bg-gray aspect-square ${
