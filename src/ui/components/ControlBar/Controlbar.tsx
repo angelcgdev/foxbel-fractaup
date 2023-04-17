@@ -1,23 +1,31 @@
 import { VolumeController } from './components/VolumeController';
-import useControllerBarViewModel from './ViewModel';
 import '../../../index.css';
 import { Icon } from '../Icon/Icon';
-interface ControllBarProps {
+import { type TrackMdl } from '../../../domain/model/track.mdl';
+import { useControllerBar } from './useControlBar';
+
+export interface ControllBarProps {
   className?: string;
+  trackSelected: TrackMdl;
+  onNext: () => void;
+  onPrev: () => void;
+  onPause?: () => void;
+  onEnded: () => void;
+  onPlay?: () => void;
+  initialVolume?: number;
 }
 export const ControllBar = ({
-  className
+  className,
+  onEnded,
+  onNext,
+  onPause,
+  onPlay,
+  onPrev,
+  trackSelected,
+  initialVolume = 0.5
 }: ControllBarProps) => {
-  const {
-    trackSelected,
-    player,
-    prevTrack,
-    nextTrack,
-    play,
-    onChangeVolume,
-    handleEnd,
-    handlePlay
-  } = useControllerBarViewModel();
+  const { player, onChangeVolume, handlePlay, paused } =
+    useControllerBar({ trackSelected, initialVolume });
   return (
     <footer
       className={`w-full h-16 sm:h-20 md:h-24 lg:h-[100px] bg-primary text-white flex justify-between items-center pr-6 sm:pr-9 md:pr-12 ${
@@ -30,8 +38,8 @@ export const ControllBar = ({
           src={trackSelected.preview}
           controls
           // eslint-disable-next-line react/no-unknown-property
-          playsInline={play}
-          onEnded={handleEnd}
+          playsInline={paused}
+          onEnded={onEnded}
           className='hidden'
         />
       ) : (
@@ -60,7 +68,7 @@ export const ControllBar = ({
       </div>
       <div className='p-3 md:p-5 h-full flex items-center justify-end md:justify-center gap-6 md:flex-1'>
         <button
-          onClick={prevTrack}
+          onClick={onPrev}
           aria-label='Previous track'
           className='text-white disabled:text-opacity-50'
           disabled={trackSelected === undefined}
@@ -73,16 +81,16 @@ export const ControllBar = ({
           onClick={() => {
             void handlePlay();
           }}
-          aria-label={play ? 'Pause' : 'Play'}
+          aria-label={paused ? 'Pause' : 'Play'}
         >
-          {play ? (
+          {paused ? (
             <Icon icon='pause' />
           ) : (
             <Icon icon='play' />
           )}
         </button>
         <button
-          onClick={nextTrack}
+          onClick={onNext}
           aria-label='Next track'
           className='text-white disabled:text-opacity-50'
           disabled={trackSelected === undefined}
@@ -90,7 +98,10 @@ export const ControllBar = ({
           <Icon icon='next' />
         </button>
       </div>
-      <VolumeController onChangeVolume={onChangeVolume} />
+      <VolumeController
+        onChangeVolume={onChangeVolume}
+        initialVolume={initialVolume}
+      />
     </footer>
   );
 };

@@ -1,15 +1,10 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faUser,
-  faBars,
-  faSearch
-} from '@fortawesome/free-solid-svg-icons';
 import {
   FoxbelContext,
   MenuActionType,
   QueryActionType
 } from '../../provider/FoxbelProvider';
 import { type ChangeEvent, useContext } from 'react';
+import { Icon } from '../Icon/Icon';
 
 export const Header = () => {
   const {
@@ -40,21 +35,18 @@ export const Header = () => {
           className='w-full max-w-[524px] rounded-full outline outline-gray focus:outline-primary outline-1 h-9 pl-4 pr-8'
           onChange={onChange}
         />
-        <FontAwesomeIcon
-          icon={faSearch}
+        <Icon
+          icon='search'
           className='absolute right-3 text-softgray'
         />
       </div>
       <div className='flex gap-3'>
         <div className='flex items-center gap-3'>
           <button
-            className='h-9 w-9'
+            className='h-9 w-9 text-primary'
             aria-label='User avatar'
           >
-            <FontAwesomeIcon
-              icon={faUser}
-              className='text-xs md:text-base lg:text-lg text-primary'
-            />
+            <Icon icon='user' />
           </button>
           <span className='hidden sm:inline text-base whitespace-nowrap'>
             Francisco M.
@@ -66,10 +58,7 @@ export const Header = () => {
           onClick={handleMenu}
           aria-label='Menu'
         >
-          <FontAwesomeIcon
-            icon={faBars}
-            className='text-xs md:text-base lg:text-lg text-black'
-          />
+          <Icon icon='menu' />
         </button>
       </div>
     </header>

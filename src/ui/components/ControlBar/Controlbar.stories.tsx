@@ -1,13 +1,9 @@
 import { type Meta, type StoryObj } from '@storybook/react';
 import { ControllBar } from './Controlbar';
-import {
-  FoxbelContext,
-  defaulProps
-} from '../../provider/FoxbelProvider';
 import { type TrackMdl } from '../../../domain/model/track.mdl';
 
 const meta: Meta<typeof ControllBar> = {
-  title: 'Example/ControllerBar',
+  title: 'Design System/ControllerBar',
   component: ControllBar,
   tags: ['autodocs']
 };
@@ -65,29 +61,14 @@ const defaultTrack: TrackMdl = {
   },
   type: 'track'
 };
-export const Default: Story = {
-  decorators: [
-    (Story) => (
-      <FoxbelContext.Provider
-        value={{
-          ...defaulProps,
-          state: {
-            ...defaulProps.state,
-            trackSelected: defaultTrack
-          }
-        }}
-      >
-        <Story />
-      </FoxbelContext.Provider>
-    )
-  ]
+export const WithTrack: Story = {
+  args: {
+    initPaused: true,
+    trackSelected: defaultTrack
+  }
 };
-export const Missing: Story = {
-  decorators: [
-    (Story) => (
-      <FoxbelContext.Provider value={{ ...defaulProps }}>
-        <Story />
-      </FoxbelContext.Provider>
-    )
-  ]
+export const WithoutTrack: Story = {
+  args: {
+    trackSelected: undefined
+  }
 };

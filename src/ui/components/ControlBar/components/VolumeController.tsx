@@ -8,12 +8,16 @@ import { type ChangeEvent, useState } from 'react';
 
 interface VolumeControllerProps {
   onChangeVolume: (vol: number) => void;
+  initialVolume: number;
 }
 
 export const VolumeController = ({
-  onChangeVolume
+  onChangeVolume,
+  initialVolume
 }: VolumeControllerProps) => {
-  const [volume, setVolume] = useState('.5');
+  const [volume, setVolume] = useState(
+    initialVolume.toString()
+  );
   const minValue = 0;
   const maxValue = 1.0;
 

@@ -7,7 +7,7 @@ import {
 import { Page } from './Page';
 
 const meta = {
-  title: 'Example/Page',
+  title: 'Design System/Page',
   component: Page,
   parameters: {
     // More on how to position stories at: https://storybook.js.org/docs/7.0/react/configure/story-layout

@@ -5,7 +5,9 @@ import {
   faEllipsisH,
   faEllipsisV,
   faStepBackward,
-  faStepForward
+  faStepForward,
+  faSearch,
+  faBars
 } from '@fortawesome/free-solid-svg-icons';
 
 export default {
@@ -15,5 +17,7 @@ export default {
   ellipsisH: faEllipsisH,
   ellipsisV: faEllipsisV,
   prev: faStepBackward,
-  next: faStepForward
+  next: faStepForward,
+  search: faSearch,
+  menu: faBars
 };
