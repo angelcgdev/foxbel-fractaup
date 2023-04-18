@@ -1,27 +1,14 @@
 import useRecentsListViewModel from './ViewModel';
-import { CardAlbum } from '../../components/CardAlbum';
-import { CardTrack } from '../../components/CardTrack';
+import { CardAlbum } from '../../components/CardAlbum/CardAlbum';
+import { CardTrack } from '../../components/CardTrack/CardTrack';
 import { type TrackMdl } from '../../../domain/model/track.mdl';
+import { useContext } from 'react';
+import { FoxbelContext } from '../../provider/FoxbelProvider';
 
-const List = ({
-  tracks,
-  query
-}: {
-  tracks: TrackMdl[];
-  query: string;
-}) => {
-  if (tracks.length === 0) {
-    return (
-      <section
-        aria-label='Seach Result'
-        className='flex-1 flex justify-center items-center'
-      >
-        <p className='text-base'>
-          no se encontraron resultados para {query}
-        </p>
-      </section>
-    );
-  }
+const List = ({ tracks }: { tracks: TrackMdl[] }) => {
+  const {
+    state: { trackSelected }
+  } = useContext(FoxbelContext);
   return (
     <>
       <section aria-label='Recommended Artist'>
@@ -42,7 +29,10 @@ const List = ({
         >
           {tracks.map((track, i) => (
             <li key={`song_${i}`} role='listitem'>
-              <CardTrack track={track} />
+              <CardTrack
+                track={track}
+                isPlaying={trackSelected?.id === track.id}
+              />
             </li>
           ))}
         </ul>
@@ -63,7 +53,7 @@ const LoadSection = () => {
       </section>
     );
   }
-  if (error) {
+  if (error !== undefined) {
     return (
       <section
         aria-label='Seach Error'
@@ -73,7 +63,19 @@ const LoadSection = () => {
       </section>
     );
   }
-  return <List tracks={traks} query={query} />;
+  if (traks.length === 0) {
+    return (
+      <section
+        aria-label='Seach Result'
+        className='flex-1 flex justify-center items-center'
+      >
+        <p className='text-base'>
+          no se encontraron resultados para {query}
+        </p>
+      </section>
+    );
+  }
+  return <List tracks={traks} />;
 };
 
 export const RecentsPage = () => {

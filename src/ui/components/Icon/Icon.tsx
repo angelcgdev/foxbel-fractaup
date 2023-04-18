@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import icons from './constants';
 
-interface IconProps {
+export interface IconProps {
   icon: keyof typeof icons;
   className?: string;
   size?: 'sm' | 'md' | 'lg';

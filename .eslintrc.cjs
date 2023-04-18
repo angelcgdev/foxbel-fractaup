@@ -27,6 +27,7 @@ module.exports = {
     '@typescript-eslint/no-confusing-void-expression':
       'error',
     '@typescript-eslint/member-delimiter-style': 'off',
-    'multiline-ternary': 'off'
+    'multiline-ternary': 'off',
+    '@typescript-eslint/no-extraneous-class': 'off'
   }
 };

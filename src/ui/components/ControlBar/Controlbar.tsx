@@ -24,8 +24,17 @@ export const ControllBar = ({
   trackSelected,
   initialVolume = 0.5
 }: ControllBarProps) => {
-  const { player, onChangeVolume, handlePlay, paused } =
-    useControllerBar({ trackSelected, initialVolume });
+  const {
+    player,
+    onChangeVolume,
+    handlePlay,
+    paused,
+    handleEnded
+  } = useControllerBar({
+    trackSelected,
+    initialVolume,
+    onEnded
+  });
   return (
     <footer
       className={`w-full h-16 sm:h-20 md:h-24 lg:h-[100px] bg-primary text-white flex justify-between items-center pr-6 sm:pr-9 md:pr-12 ${
@@ -38,7 +47,7 @@ export const ControllBar = ({
         controls
         // eslint-disable-next-line react/no-unknown-property
         playsInline={paused}
-        onEnded={onEnded}
+        onEnded={handleEnded}
         className='hidden'
       />
       <div className='w-full h-16 sm:h-20 md:h-24 lg:h-[100px] flex gap-2 md:gap-5 flex-1'>

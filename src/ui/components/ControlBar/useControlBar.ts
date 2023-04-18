@@ -4,10 +4,12 @@ import { type TrackMdl } from '../../../domain/model/track.mdl';
 interface useControllerProps {
   trackSelected?: TrackMdl;
   initialVolume: number;
+  onEnded: () => void;
 }
 export function useControllerBar({
   trackSelected,
-  initialVolume
+  initialVolume,
+  onEnded
 }: useControllerProps) {
   const player = useRef<HTMLAudioElement>(null);
   const [paused, setPaused] = useState<boolean>(false);
@@ -34,6 +36,10 @@ export function useControllerBar({
     }
     setPaused(!(player.current?.paused ?? false));
   };
+  const handleEnded = () => {
+    onEnded();
+    setPaused(false);
+  };
 
   useEffect(() => {
     if (trackSelected === undefined) return;
@@ -50,6 +56,7 @@ export function useControllerBar({
     player,
     onChangeVolume,
     handlePlay,
-    paused
+    paused,
+    handleEnded
   };
 }

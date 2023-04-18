@@ -1,10 +1,5 @@
-import {
-  faVolumeDown,
-  faVolumeHigh,
-  faVolumeOff
-} from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { type ChangeEvent, useState } from 'react';
+import { Icon, type IconProps } from '../../Icon/Icon';
 
 interface VolumeControllerProps {
   onChangeVolume: (vol: number) => void;
@@ -33,14 +28,14 @@ export const VolumeController = ({
     setVolume(normalizedValue.toString());
   };
 
-  const icon = () => {
+  const icon = (): IconProps['icon'] => {
     if (+volume === 0) {
-      return faVolumeOff;
+      return 'volumeOff';
     }
     if (+volume < maxValue / 2) {
-      return faVolumeDown;
+      return 'volumeDown';
     }
-    return faVolumeHigh;
+    return 'volumeUp';
   };
 
   return (
@@ -59,7 +54,7 @@ export const VolumeController = ({
         aria-valuenow={+volume}
       />
       <div className='h-7 md:h-9 aspect-square flex items-center'>
-        <FontAwesomeIcon icon={icon()} className='h-full' />
+        <Icon icon={icon()} className='h-full' />
       </div>
     </div>
   );

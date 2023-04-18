@@ -7,7 +7,10 @@ import {
   faStepBackward,
   faStepForward,
   faSearch,
-  faBars
+  faBars,
+  faVolumeUp,
+  faVolumeDown,
+  faVolumeOff
 } from '@fortawesome/free-solid-svg-icons';
 
 export default {
@@ -19,5 +22,8 @@ export default {
   prev: faStepBackward,
   next: faStepForward,
   search: faSearch,
-  menu: faBars
+  menu: faBars,
+  volumeOff: faVolumeOff,
+  volumeDown: faVolumeDown,
+  volumeUp: faVolumeUp
 };

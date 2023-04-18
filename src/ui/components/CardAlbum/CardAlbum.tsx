@@ -1,6 +1,6 @@
-import type { AlbumMdl } from '../../domain/model/album,.mdl';
-import type { ArtistMdl } from '../../domain/model/artist.mdl';
-import { Button } from './Button/Button';
+import type { AlbumMdl } from '../../../domain/model/album,.mdl';
+import type { ArtistMdl } from '../../../domain/model/artist.mdl';
+import { Button } from '../Button/Button';
 
 interface CardAlbumProps {
   album: AlbumMdl;
