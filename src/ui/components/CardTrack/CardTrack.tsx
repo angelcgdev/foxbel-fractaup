@@ -57,7 +57,13 @@ export const CardTrack = ({
         </div>
       </div>
       <div className=''>
-        <h3 className='text-black text-opacity-70'>
+        <h3
+          className={`${
+            isPlaying
+              ? 'text-primary'
+              : 'text-black text-opacity-70'
+          } `}
+        >
           {title}
         </h3>
         <p className='text-gray'>{artist.name}</p>
