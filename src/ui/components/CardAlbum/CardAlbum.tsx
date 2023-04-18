@@ -1,3 +1,4 @@
+import { useRef } from 'react';
 import type { AlbumMdl } from '../../../domain/model/album,.mdl';
 import type { ArtistMdl } from '../../../domain/model/artist.mdl';
 import { Button } from '../Button/Button';
@@ -5,11 +6,15 @@ import { Button } from '../Button/Button';
 interface CardAlbumProps {
   album: AlbumMdl;
   artist: ArtistMdl;
+  playing: boolean;
+  following: boolean;
 }
 
 export const CardAlbum = ({
   artist,
-  album
+  album,
+  following,
+  playing
 }: CardAlbumProps) => {
   const getRandom = (min: number, max: number) =>
     (Math.random() * (max - min) + min).toLocaleString(
@@ -18,6 +23,10 @@ export const CardAlbum = ({
         maximumFractionDigits: 2
       }
     );
+
+  const followers = useRef(
+    getRandom(4565656, 9999945)
+  ).current;
   return (
     <article
       aria-label='Artist card'
@@ -43,7 +52,7 @@ export const CardAlbum = ({
           <div className='flex flex-wrap gap-x-4 w-full'>
             <span>Lo mejor de {artist.name}</span>
             <span className='text-secondary'>
-              {getRandom(4565656, 9999945)} seguidores
+              {followers} seguidores
             </span>
           </div>
         </div>
@@ -58,13 +67,13 @@ export const CardAlbum = ({
             styleType='primary'
             className='line-clamp-1'
           >
-            Reproducir
+            {playing ? 'Reproduciendo' : 'Reproducir'}
           </Button>
           <Button
             styleType='seconday'
             className='line-clamp-1'
           >
-            Seguir
+            {following ? 'Siguiendo' : 'Seguir'}
           </Button>
           <Button styleType='ellipsis' />
         </div>

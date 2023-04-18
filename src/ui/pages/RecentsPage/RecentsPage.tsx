@@ -15,6 +15,10 @@ const List = ({ tracks }: { tracks: TrackMdl[] }) => {
         <CardAlbum
           album={tracks[0].album}
           artist={tracks[0].artist}
+          playing={
+            trackSelected?.album.id === tracks[0].album.id
+          }
+          following={false}
         />
       </section>
       <section
