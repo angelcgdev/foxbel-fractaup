@@ -4,6 +4,7 @@ import { FoxbelProvider } from '../provider/FoxbelProvider';
 import { ControllBar } from '../components/ControlBar/Controlbar';
 import { RecentsPage } from './RecentsPage/RecentsPage';
 import { withTrack } from '../components/hoc/withTrack/withTrack';
+import './HomePage.css';
 
 export function HomePage() {
   const ControlBarWithTrack = withTrack(ControllBar);
@@ -17,7 +18,7 @@ export function HomePage() {
             <RecentsPage />
           </div>
         </div>
-        <ControlBarWithTrack className='sticky bottom-0 z-10' />
+        <ControlBarWithTrack className='persisten_position' />
       </div>
     </FoxbelProvider>
   );

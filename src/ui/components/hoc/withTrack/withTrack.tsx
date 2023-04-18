@@ -11,20 +11,25 @@ export const withTrack = <P extends ControllBarProps>(
 ) => {
   function WithTrack(props: WithTrackProps) {
     const {
-      handleEnd,
+      control,
       nextTrack,
       prevTrack,
-      trackSelected
+      trackSelected,
+      handlePlayPause,
+      handleVolume
     } = useControllerBarViewModel();
 
     return (
       <WrappedComponent
         {...(props as P)}
         trackSelected={trackSelected}
-        onEnded={handleEnd}
         onNext={nextTrack}
         onPrev={prevTrack}
-        initialVolume={0.1}
+        paused={control.play.state && !control.play.loading}
+        onPause={handlePlayPause}
+        onPlay={handlePlayPause}
+        onChangeVolume={handleVolume}
+        initialVolume={control.volume}
       />
     );
   }

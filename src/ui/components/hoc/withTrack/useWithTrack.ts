@@ -1,13 +1,14 @@
 import { useContext } from 'react';
 import {
   FoxbelContext,
-  TrackActionType
+  TrackActionType,
+  TrackControlType
 } from '../../../provider/FoxbelProvider';
 import { type TrackMdl } from '../../../../domain/model/track.mdl';
 
-export default function ControllerBarViewModel() {
+export default function UseWithTrack() {
   const {
-    state: { trackSelected, tracks },
+    state: { trackSelected, tracks, control },
     dispatch
   } = useContext(FoxbelContext);
   const nextTrack = () => {
@@ -36,12 +37,6 @@ export default function ControllerBarViewModel() {
       loadTrack(tracks[trackSelectedIndex]);
     }
   };
-  const handleEnd = () => {
-    const passed = nextTrack();
-    if (!passed && tracks.length > 0) {
-      loadTrack(tracks[0]);
-    }
-  };
   const loadTrack = (track: TrackMdl) => {
     dispatch({
       type: TrackActionType.PUSHTRACK,
@@ -49,10 +44,38 @@ export default function ControllerBarViewModel() {
     });
   };
 
+  const handlePlayPause = () => {
+    if (!control.play.loading) {
+      dispatch({
+        type: TrackControlType.PLAYPAUSE,
+        payload: {
+          ...control,
+          play: {
+            ...control.play,
+            loading: true,
+            next: !control.play.state
+          }
+        }
+      });
+    }
+  };
+
+  const handleVolume = (volume: number) => {
+    dispatch({
+      type: TrackControlType.PLAYPAUSE,
+      payload: {
+        ...control,
+        volume
+      }
+    });
+  };
+
   return {
     trackSelected,
     prevTrack,
     nextTrack,
-    handleEnd
+    handlePlayPause,
+    handleVolume,
+    control
   };
 }

@@ -4,22 +4,32 @@ import { CardTrack } from '../../components/CardTrack/CardTrack';
 import { type TrackMdl } from '../../../domain/model/track.mdl';
 import { useContext } from 'react';
 import { FoxbelContext } from '../../provider/FoxbelProvider';
+import { withPlaying } from '../../components/hoc/withPlaying/withPlaying';
 
-const List = ({ tracks }: { tracks: TrackMdl[] }) => {
+const CardTrackWithPlaying = withPlaying(CardTrack);
+const CardAlbumWithPlaying = ({
+  track
+}: {
+  track: TrackMdl;
+}) => {
   const {
     state: { trackSelected }
   } = useContext(FoxbelContext);
   return (
+    <CardAlbum
+      album={track.album}
+      artist={track.artist}
+      playing={trackSelected?.album.id === track.album.id}
+      following={false}
+    />
+  );
+};
+
+const List = ({ tracks }: { tracks: TrackMdl[] }) => {
+  return (
     <>
       <section aria-label='Recommended Artist'>
-        <CardAlbum
-          album={tracks[0].album}
-          artist={tracks[0].artist}
-          playing={
-            trackSelected?.album.id === tracks[0].album.id
-          }
-          following={false}
-        />
+        <CardAlbumWithPlaying track={tracks[0]} />
       </section>
       <section
         aria-label='Song Results'
@@ -33,10 +43,7 @@ const List = ({ tracks }: { tracks: TrackMdl[] }) => {
         >
           {tracks.map((track, i) => (
             <li key={`song_${i}`} role='listitem'>
-              <CardTrack
-                track={track}
-                isPlaying={trackSelected?.id === track.id}
-              />
+              <CardTrackWithPlaying track={track} />
             </li>
           ))}
         </ul>

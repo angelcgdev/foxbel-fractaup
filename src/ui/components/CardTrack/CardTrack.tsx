@@ -1,30 +1,23 @@
 import { type TrackMdl } from '../../../domain/model/track.mdl';
-import { useContext } from 'react';
 import '../../../index.css';
-import {
-  FoxbelContext,
-  TrackActionType
-} from '../../provider/FoxbelProvider';
 import { Button } from '../Button/Button';
 import { Icon } from '../Icon/Icon';
 
-interface CardTrackProps {
+export interface CardTrackProps {
   track: TrackMdl;
+  isSelected: boolean;
   isPlaying: boolean;
+  onPlay?: () => void;
+  onPause?: () => void;
 }
 export const CardTrack = ({
   track,
-  isPlaying
+  isPlaying,
+  isSelected,
+  onPause,
+  onPlay
 }: CardTrackProps) => {
   const { artist, title, album } = track;
-  const { dispatch } = useContext(FoxbelContext);
-  const handlePlay = () => {
-    dispatch({
-      type: TrackActionType.PUSHTRACK,
-      payload: track
-    });
-  };
-  console.log({ isPlaying });
   return (
     <article
       className=' flex flex-col gap-2 max-w-xs'
@@ -46,7 +39,7 @@ export const CardTrack = ({
           />
           <button
             className='h-1/3 sm:h-[42px] aspect-square'
-            onClick={handlePlay}
+            onClick={isPlaying ? onPause : onPlay}
             aria-label={isPlaying ? 'Pause' : 'Play'}
           >
             <Icon
@@ -59,14 +52,20 @@ export const CardTrack = ({
       <div className=''>
         <h3
           className={`${
-            isPlaying
+            isSelected
               ? 'text-primary'
               : 'text-black text-opacity-70'
           } `}
         >
           {title}
         </h3>
-        <p className='text-gray'>{artist.name}</p>
+        <p
+          className={
+            isSelected ? 'text-black' : 'text-gray'
+          }
+        >
+          {artist.name}
+        </p>
       </div>
     </article>
   );

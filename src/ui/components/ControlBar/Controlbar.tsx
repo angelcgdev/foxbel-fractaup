@@ -2,54 +2,36 @@ import { VolumeController } from './components/VolumeController';
 import '../../../index.css';
 import { Icon } from '../Icon/Icon';
 import { type TrackMdl } from '../../../domain/model/track.mdl';
-import { useControllerBar } from './useControlBar';
 
 export interface ControllBarProps {
   className?: string;
   trackSelected?: TrackMdl;
   onNext: () => void;
   onPrev: () => void;
-  onPause?: () => void;
+  onPause: () => void;
   onEnded: () => void;
-  onPlay?: () => void;
-  initialVolume?: number;
+  onPlay: () => void;
+  initialVolume: number;
+  paused: boolean;
+  onChangeVolume: () => void;
 }
 export const ControllBar = ({
   className,
-  onEnded,
   onNext,
   onPause,
   onPlay,
   onPrev,
   trackSelected,
-  initialVolume = 0.5
+  initialVolume,
+  onChangeVolume,
+  paused
 }: ControllBarProps) => {
-  const {
-    player,
-    onChangeVolume,
-    handlePlay,
-    paused,
-    handleEnded
-  } = useControllerBar({
-    trackSelected,
-    initialVolume,
-    onEnded
-  });
   return (
     <footer
       className={`w-full h-16 sm:h-20 md:h-24 lg:h-[100px] bg-primary text-white flex justify-between items-center pr-6 sm:pr-9 md:pr-12 ${
         className ?? ''
       }`}
     >
-      <audio
-        ref={player}
-        src={trackSelected?.preview}
-        controls
-        // eslint-disable-next-line react/no-unknown-property
-        playsInline={paused}
-        onEnded={handleEnded}
-        className='hidden'
-      />
       <div className='w-full h-16 sm:h-20 md:h-24 lg:h-[100px] flex gap-2 md:gap-5 flex-1'>
         <figure
           className={`h-full bg-gray aspect-square ${
@@ -83,9 +65,7 @@ export const ControllBar = ({
         <button
           className='h-full aspect-square bg-white bg-opacity-10 rounded-full text-white disabled:text-opacity-50'
           disabled={trackSelected === undefined}
-          onClick={() => {
-            void handlePlay();
-          }}
+          onClick={paused ? onPlay : onPause}
           aria-label={paused ? 'Pause' : 'Play'}
         >
           {paused ? (
