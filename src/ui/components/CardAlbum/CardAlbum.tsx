@@ -2,6 +2,7 @@ import { useRef } from 'react';
 import type { AlbumMdl } from '../../../domain/model/album,.mdl';
 import type { ArtistMdl } from '../../../domain/model/artist.mdl';
 import { Button } from '../Button/Button';
+import { ButtonIcon } from '../ButtonIcon/ButtonIcon';
 
 interface CardAlbumProps {
   album: AlbumMdl;
@@ -39,10 +40,10 @@ export const CardAlbum = ({
           className='h-full w-full object-cover'
         />
       </figure>
-      <div className='flex-1 overflow-hidden p-8 flex flex-col gap-3 md:gap-5 text-white bg-center bg-no-repeat bg-cover bg-primary-variant bg-opacity-70 relative'>
+      <div className='flex-1 overflow-hidden p-8 flex flex-col gap-3 md:gap-5 text-white bg-center bg-no-repeat bg-cover bg-secondary-variant bg-opacity-80 relative'>
         <img
           src={artist.pictureXl}
-          className='w-full h-full top-0 left-0 right-0 bottom-0 object-cover absolute -z-10'
+          className='w-full h-full top-0 left-0 right-0 bottom-0 object-cover absolute -z-[11]'
           alt='Photo of recommended artist'
         />
         <div className='w-full flex flex-col'>
@@ -75,7 +76,10 @@ export const CardAlbum = ({
           >
             {following ? 'Siguiendo' : 'Seguir'}
           </Button>
-          <Button styleType='ellipsis' />
+          <ButtonIcon
+            icon='ellipsisH'
+            className='text-primary'
+          />
         </div>
       </div>
     </article>

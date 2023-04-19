@@ -28,6 +28,8 @@ module.exports = {
       'error',
     '@typescript-eslint/member-delimiter-style': 'off',
     'multiline-ternary': 'off',
-    '@typescript-eslint/no-extraneous-class': 'off'
+    '@typescript-eslint/no-extraneous-class': 'off',
+    indent: 'off',
+    '@typescript-eslint/indent': 'off'
   }
 };

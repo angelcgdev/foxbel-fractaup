@@ -1,13 +1,10 @@
 import { Sidebar } from '../components/Sidebar/Sidebar';
 import { Header } from '../components/Header/Header';
 import { FoxbelProvider } from '../provider/FoxbelProvider';
-import { ControllBar } from '../components/ControlBar/Controlbar';
 import { RecentsPage } from './RecentsPage/RecentsPage';
-import { withTrack } from '../components/hoc/withTrack/withTrack';
-import './HomePage.css';
+import { ControlBarFixChromeAndroid } from '../components/ControlBarFixChromeAndroid';
 
 export function HomePage() {
-  const ControlBarWithTrack = withTrack(ControllBar);
   return (
     <FoxbelProvider>
       <div className='w-full h-full flex flex-col relative overflow-auto'>
@@ -18,7 +15,7 @@ export function HomePage() {
             <RecentsPage />
           </div>
         </div>
-        <ControlBarWithTrack className='persisten_position' />
+        <ControlBarFixChromeAndroid />
       </div>
     </FoxbelProvider>
   );

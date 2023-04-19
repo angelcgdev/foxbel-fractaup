@@ -2,6 +2,7 @@ import { VolumeController } from './components/VolumeController';
 import '../../../index.css';
 import { Icon } from '../Icon/Icon';
 import { type TrackMdl } from '../../../domain/model/track.mdl';
+import { forwardRef } from 'react';
 
 export interface ControllBarProps {
   className?: string;
@@ -15,19 +16,27 @@ export interface ControllBarProps {
   paused: boolean;
   onChangeVolume: () => void;
 }
-export const ControllBar = ({
-  className,
-  onNext,
-  onPause,
-  onPlay,
-  onPrev,
-  trackSelected,
-  initialVolume,
-  onChangeVolume,
-  paused
-}: ControllBarProps) => {
+// eslint-disable-next-line react/display-name
+export const ControllBar = forwardRef<
+  HTMLElement,
+  ControllBarProps
+>(function (
+  {
+    className,
+    onNext,
+    onPause,
+    onPlay,
+    onPrev,
+    trackSelected,
+    initialVolume,
+    onChangeVolume,
+    paused
+  },
+  ref
+) {
   return (
     <footer
+      ref={ref}
       className={`w-full h-16 sm:h-20 md:h-24 lg:h-[100px] bg-primary text-white flex justify-between items-center pr-6 sm:pr-9 md:pr-12 ${
         className ?? ''
       }`}
@@ -89,4 +98,4 @@ export const ControllBar = ({
       />
     </footer>
   );
-};
+});

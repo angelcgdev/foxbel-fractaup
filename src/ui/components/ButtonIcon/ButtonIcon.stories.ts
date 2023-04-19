@@ -1,29 +1,21 @@
 /* @vite-ignore */
 import type { Meta, StoryObj } from '@storybook/react';
-import { Button } from './Button';
+import { ButtonIcon } from './ButtonIcon';
 // More on how to set up stories at: https://storybook.js.org/docs/7.0/react/writing-stories/introduction
 const meta = {
-  title: 'Design System/Atoms/Button',
-  component: Button,
+  title: 'Design System/Atoms/ButtonIcon',
+  component: ButtonIcon,
   tags: ['autodocs'],
   argTypes: {
     children: { type: 'string', defaultValue: 'button' }
   }
-} satisfies Meta<typeof Button>;
+} satisfies Meta<typeof ButtonIcon>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Primary: Story = {
+export const Default: Story = {
   args: {
-    styleType: 'primary',
-    children: 'primary'
-  }
-};
-
-export const Outline: Story = {
-  args: {
-    styleType: 'seconday',
-    children: 'outline'
+    icon: 'ellipsisH'
   }
 };

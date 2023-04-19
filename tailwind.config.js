@@ -8,6 +8,8 @@ export default {
         'rgb(var(--color-primary-variant) / <alpha-value>)',
       secondary:
         'rgb(var(--color-secondary) / <alpha-value>)',
+      'secondary-variant':
+        'rgb(var(--color-cover) / <alpha-value>)',
       softgray:
         'rgb(var(--color-softgray) / <alpha-value>)',
       gray: 'rgb(var(--color-gray) / <alpha-value>)',

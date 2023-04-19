@@ -1,5 +1,0 @@
-.persisten_position {
-    -webkit-transform: translateZ(0);
-    transform: translateZ(0);
-    @apply sticky bottom-0 z-10;
-}

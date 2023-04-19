@@ -12,10 +12,12 @@
     --color-softgray: 189 189 189;
     --color-gray: 130 130 130;
     --color-white: 255 255 255;
+    --color-cover: 167 130 130;
   }
 
   html {
     font-family: Quicksand;
+    @apply duration-300;
   }
 
   h2,
@@ -23,13 +25,13 @@
     @apply font-bold;
   }
   h2 {
-    @apply text-[22px];
+    @apply text-base md:text-[22px];
   }
   h3 {
-    @apply text-base;
+    @apply text-sm md:text-base;
   }
   h4 {
-    @apply text-sm;
+    @apply text-xs md:text-sm;
   }
 
   p {
@@ -43,17 +45,18 @@
   input[type='submit'].primary,
   input[type='reset'].primary,
   [role='button'].primary {
-    @apply bg-primary rounded-full px-6 py-1 text-white md:min-w-[117px] text-sm h-[31px] disabled:bg-opacity-75;
+    @apply duration-300 bg-primary rounded-full px-6 py-1 text-white md:min-w-[117px] text-sm h-[31px] disabled:bg-opacity-75;
   }
-  button.secondary {
-    @apply bg-transparent rounded-full px-6 text-primary outline-1 md:min-w-[117px] text-sm outline h-[29px] disabled:text-opacity-75;
+  button.secondary,
+  input[type='button'].secondary,
+  input[type='submit'].secondary,
+  input[type='reset'].secondary,
+  [role='button'].secondary {
+    @apply bg-transparent hover:bg-primary rounded-full px-6 text-primary hover:text-white outline-1 outline-primary md:min-w-[117px] text-sm outline h-[29px] disabled:text-opacity-75;
   }
 
   button.icon {
-    @apply bg-transparent text-primary  disabled:text-opacity-75 h-[31px]  w-[31px] flex items-center justify-center;
-  }
-  button.icon_vertical {
-    @apply w-9 p-2 rotate-90 disabled:text-opacity-75;
+    @apply bg-transparent disabled:text-opacity-75 h-[31px]  w-[31px] flex items-center justify-center;
   }
 
   input[type='range'] {

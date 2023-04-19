@@ -1,6 +1,6 @@
 import { type TrackMdl } from '../../../domain/model/track.mdl';
 import '../../../index.css';
-import { Button } from '../Button/Button';
+import { ButtonIcon } from '../ButtonIcon/ButtonIcon';
 import { Icon } from '../Icon/Icon';
 
 export interface CardTrackProps {
@@ -32,10 +32,9 @@ export const CardTrack = ({
           />
         </figure>
         <div className='aspect-square w-full absolute z-[1] top-0 flex justify-center items-center text-white hover:bg-black hover:bg-opacity-10 duration-200'>
-          <Button
-            styleType='ellipsis'
-            direction='vertical'
-            className='absolute right-0 top-0'
+          <ButtonIcon
+            icon='ellipsisV'
+            className='absolute right-0 top-0 text-white  translate-x-1'
           />
           <button
             className='h-1/3 sm:h-[42px] aspect-square'
